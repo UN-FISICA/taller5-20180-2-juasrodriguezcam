@@ -1,9 +1,17 @@
 #!/usr/bin/python3
 import argparse
 from calc_mod import *
-
-
+from matplotlib.pyplot import imread
 
 if __name__ =="__main__":
-    print("***")
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-imname",'--imagename', help="Nombre del archivo a procesar")
+    parser.add_argument("-hz", '--hertz', type=float, help="Frecuencia de la lámpara estroboscópica en hertz")
+    parser.add_argument("-dx", '--deltax', type=float, help="Tamaño de cada pixel de la imagen en mm")
+    args=parser.parse_args()
+    hz=args.hertz
+    dx=args.deltax
+    image=imread(args.imagename)
+    acel=calc(image,hz,dx)
+    print(acel)
    
